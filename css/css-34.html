@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overflow Properties</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.ov{width:200px;height:60px;border:1px solid #ccc;padding:6px;margin-bottom:10px;}
+.ov-scroll{overflow:scroll;}
+.ov-hidden{overflow:hidden;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Overflow Properties</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrates overflow: visible, hidden, scroll, auto.</p>
+    
+<div class="ov ov-scroll">This box has a lot of text content that will overflow the fixed height and trigger a scrollbar because overflow is set to scroll.</div>
+<div class="ov ov-hidden">This box hides overflow content that goes past its fixed boundaries.</div>
+
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+
+</script>
+</body>
+</html>

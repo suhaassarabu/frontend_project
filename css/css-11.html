@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pseudo-elements</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.quote::first-letter{font-size:2em;color:#4f46e5;}
+.quote::first-line{font-weight:bold;}
+.tag::before{content:"# ";color:#16a34a;}
+.tag::after{content:" \2605";color:#fbbf24;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Pseudo-elements</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrates ::before, ::after, ::first-letter, ::first-line.</p>
+    
+<p class="quote">This paragraph demonstrates first-letter and first-line styling applied automatically by CSS pseudo-elements across the whole first line of text.</p>
+<div class="tag">Tag</div>
+
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Navigation Menu</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.hamburger{display:none;background:#1f2333;color:#fff;padding:10px;cursor:pointer;}
+.resp-nav{display:flex;gap:16px;background:#1f2333;padding:10px;}
+.resp-nav a{color:#fff;text-decoration:none;}
+@media (max-width:600px){
+  .hamburger{display:block;}
+  .resp-nav{display:none;flex-direction:column;}
+  #menu-toggle:checked ~ .resp-nav{display:flex;}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Responsive Navigation Menu</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A responsive nav menu using HTML and CSS.</p>
+    
+<input type="checkbox" id="menu-toggle" style="display:none;">
+<label for="menu-toggle" class="hamburger">&#9776; Menu</label>
+<nav class="resp-nav"><a href="#">Home</a><a href="#">About</a><a href="#">Contact</a></nav>
+
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+
+</script>
+</body>
+</html>

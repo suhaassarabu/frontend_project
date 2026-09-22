@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Animations</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.anim-box{width:60px;height:60px;background:#4f46e5;border-radius:10px;
+  animation:move 2s ease-in-out infinite alternate;}
+@keyframes move{ from{transform:translateX(0);} to{transform:translateX(200px);} }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>CSS Animations</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrates keyframe-based CSS animation.</p>
+    
+<div class="anim-box"></div>
+
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+
+</script>
+</body>
+</html>

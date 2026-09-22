@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexbox Alignment and Ordering</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.align-demo{display:flex;justify-content:center;align-items:center;height:120px;gap:10px;background:#f0f0f0;border-radius:8px;}
+.align-demo div{background:#4f46e5;color:#fff;padding:10px;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Flexbox Alignment and Ordering</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrates align-items, justify-content, and order.</p>
+    
+<div class="align-demo">
+  <div style="order:2;">First (order:2)</div>
+  <div style="order:1;">Second (order:1)</div>
+  <div style="order:3;">Third (order:3)</div>
+</div>
+
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+
+</script>
+</body>
+</html>

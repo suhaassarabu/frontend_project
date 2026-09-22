@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Layout with Grid</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.dash{display:grid;grid-template-columns:150px 1fr;grid-template-rows:60px 200px;gap:8px;}
+.dash-header{grid-column:1/3;background:#4f46e5;color:#fff;padding:10px;}
+.dash-side{background:#e0e7ff;padding:10px;}
+.dash-main{background:#fff;border:1px solid #e5e7eb;padding:10px;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Dashboard Layout with Grid</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A dashboard layout using CSS Grid.</p>
+    
+<div class="dash">
+  <div class="dash-header">Header</div>
+  <div class="dash-side">Sidebar</div>
+  <div class="dash-main">Main Content</div>
+</div>
+
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+
+</script>
+</body>
+</html>

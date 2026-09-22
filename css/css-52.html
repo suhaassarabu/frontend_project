@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Contact Form</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.contact-form{display:flex;flex-direction:column;gap:10px;max-width:400px;}
+.contact-form input, .contact-form textarea{padding:10px;border:1px solid #ccc;border-radius:6px;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Responsive Contact Form</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A responsive contact form built with CSS.</p>
+    
+<form class="contact-form" onsubmit="return false;">
+  <input placeholder="Name"><input type="email" placeholder="Email">
+  <textarea placeholder="Message" rows="4"></textarea>
+  <button class="btn">Send</button>
+</form>
+
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Template Areas</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.area-grid{display:grid;grid-template-areas:"header header" "nav main" "footer footer";
+  grid-template-columns:120px 1fr;gap:8px;}
+.a-header{grid-area:header;background:#4f46e5;color:#fff;padding:10px;}
+.a-nav{grid-area:nav;background:#e0e7ff;padding:10px;}
+.a-main{grid-area:main;background:#fff;border:1px solid #e5e7eb;padding:10px;}
+.a-footer{grid-area:footer;background:#1f2333;color:#fff;padding:10px;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Grid Template Areas</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrates a layout using CSS Grid template areas.</p>
+    
+<div class="area-grid">
+  <div class="a-header">Header</div>
+  <div class="a-nav">Nav</div>
+  <div class="a-main">Main</div>
+  <div class="a-footer">Footer</div>
+</div>
+
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+
+</script>
+</body>
+</html>

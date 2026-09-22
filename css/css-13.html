@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Styled Registration Form</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.reg-form{display:flex;flex-direction:column;gap:10px;max-width:320px;}
+.reg-form input{padding:10px;border:1px solid #ccc;border-radius:6px;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Styled Registration Form</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A registration form styled with CSS.</p>
+    
+<form class="reg-form" onsubmit="return false;">
+  <input type="text" placeholder="Full Name" required>
+  <input type="email" placeholder="Email" required>
+  <input type="password" placeholder="Password" required>
+  <button class="btn" type="submit">Register</button>
+</form>
+
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+
+</script>
+</body>
+</html>

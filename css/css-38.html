@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dropdown Menu</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.dropdown{position:relative;display:inline-block;}
+.dropdown-content{display:none;position:absolute;background:#fff;border:1px solid #e5e7eb;min-width:140px;border-radius:6px;overflow:hidden;}
+.dropdown-content a{display:block;padding:10px;color:#1f2333;text-decoration:none;}
+.dropdown-content a:hover{background:#eef;}
+.dropdown:hover .dropdown-content{display:block;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Dropdown Menu</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A dropdown menu built with HTML and CSS only.</p>
+    
+<div class="dropdown">
+  <button class="btn">Menu &#9662;</button>
+  <div class="dropdown-content"><a href="#">Profile</a><a href="#">Settings</a><a href="#">Logout</a></div>
+</div>
+
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+
+</script>
+</body>
+</html>

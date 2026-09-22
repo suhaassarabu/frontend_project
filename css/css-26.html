@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Inheritance and Specificity</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+#parent{color:#4f46e5;font-size:14px;}
+p{font-size:16px;}
+.child{font-size:20px !important;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>CSS Inheritance and Specificity</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrates how CSS inheritance and specificity rules apply.</p>
+    
+<div id="parent">
+  <p class="child">This text inherits color from parent, but font-size is overridden by higher specificity.</p>
+</div>
+
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+
+</script>
+</body>
+</html>
