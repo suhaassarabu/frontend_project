@@ -88,11 +88,11 @@ frontend_website/
 │   │   └── css-73.html
 │   │
 │   ├── javascript/
-│   │   ├── index.html
-│   │   ├── js-01-hello-world.html
-│   │   ├── js-02-arithmetic.html
+│   │   ├── index.js
+│   │   ├── js-01-hello-world.js
+│   │   ├── js-02-arithmetic.js
 │   │   ├── ...
-│   │   └── js-112-project-currency-converter.html
+│   │   └── js-112-project-currency-converter.js
 │   │
 │   ├── assets/
 │   │   └── style.css
