@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Expense Tracker</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Simple Expense Tracker</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Track expenses and running total using JavaScript.</p>
+<input id="expName" placeholder="Expense name">
+<input id="expAmt" type="number" placeholder="Amount">
+<button class="btn" onclick="addExpense()">Add</button>
+<ul id="expList" class="program-list" style="margin-top:12px;"></ul>
+<p id="expTotal">Total: ₹0</p>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+let total = 0;
+function addExpense(){
+  const name = document.getElementById('expName').value.trim();
+  const amt = parseFloat(document.getElementById('expAmt').value);
+  if(!name || isNaN(amt)) return;
+  total += amt;
+  const li = document.createElement('li');
+  li.textContent = name + " - ₹" + amt.toFixed(2);
+  document.getElementById('expList').appendChild(li);
+  document.getElementById('expTotal').textContent = "Total: ₹" + total.toFixed(2);
+  document.getElementById('expName').value = "";
+  document.getElementById('expAmt').value = "";
+}
+</script>
+</body>
+</html>

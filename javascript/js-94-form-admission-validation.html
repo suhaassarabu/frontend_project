@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Admission Form Validation</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>College Admission Form Validation</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Validate a college admission form using JavaScript.</p>
+<form id="admForm" onsubmit="return validateAdm(event)">
+<input id="admName" placeholder="Full Name"><br>
+<input id="admMarks" placeholder="12th Marks (%)"><br>
+<select id="admCourse"><option value="">Select Course</option><option>CSE</option><option>ECE</option><option>Mech</option></select><br>
+<button class="btn" type="submit">Apply</button>
+</form>
+<div id="admOut" class="output-area"></div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function validateAdm(e){
+  e.preventDefault();
+  const name = document.getElementById('admName').value.trim();
+  const marks = parseFloat(document.getElementById('admMarks').value);
+  const course = document.getElementById('admCourse').value;
+  const out = document.getElementById('admOut');
+  if(!name || !course || isNaN(marks)){ out.textContent = "All fields are required."; return false; }
+  if(marks < 0 || marks > 100){ out.textContent = "Enter a valid marks percentage."; return false; }
+  out.textContent = "Application submitted for " + course + " with " + marks + "%.";
+  return false;
+}
+</script>
+</body>
+</html>

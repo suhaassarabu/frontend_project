@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Application (API)</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Weather Application (API)</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Fetch and display live weather data using a public API.</p>
+<input id="weatherCity" placeholder="Enter city (e.g. Chennai)">
+<button class="btn" onclick="getWeather()">Get Weather</button>
+<div id="weatherOut" class="output-area"></div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+async function getWeather(){
+  const city = document.getElementById('weatherCity').value.trim();
+  const out = document.getElementById('weatherOut');
+  if(!city){ out.textContent = "Enter a city name."; return; }
+  out.textContent = "Loading...";
+  try{
+    const geo = await fetch("https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(city)).then(r=>r.json());
+    if(!geo.results || !geo.results.length){ out.textContent = "City not found."; return; }
+    const { latitude, longitude, name } = geo.results[0];
+    const weather = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`).then(r=>r.json());
+    const cw = weather.current_weather;
+    out.innerHTML = name + ": " + cw.temperature + "&deg;C, wind " + cw.windspeed + " km/h";
+  }catch(err){ out.textContent = "Could not fetch weather (offline or blocked)."; }
+}
+</script>
+</body>
+</html>

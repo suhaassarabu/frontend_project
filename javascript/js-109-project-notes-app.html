@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes Application (localStorage)</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Notes Application (localStorage)</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A notes app that saves notes to localStorage.</p>
+<textarea id="noteInput" rows="3" style="width:100%;" placeholder="Write a note..."></textarea>
+<button class="btn" onclick="saveNote()">Save Note</button>
+<ul id="notesList" class="program-list" style="margin-top:12px;"></ul>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function getNotes(){ return JSON.parse(localStorage.getItem('notes') || '[]'); }
+function renderNotes(){
+  document.getElementById('notesList').innerHTML = getNotes().map(n=>"<li>"+n+"</li>").join("");
+}
+function saveNote(){
+  const val = document.getElementById('noteInput').value.trim();
+  if(!val) return;
+  const notes = getNotes();
+  notes.push(val);
+  localStorage.setItem('notes', JSON.stringify(notes));
+  document.getElementById('noteInput').value = "";
+  renderNotes();
+}
+renderNotes();
+</script>
+</body>
+</html>

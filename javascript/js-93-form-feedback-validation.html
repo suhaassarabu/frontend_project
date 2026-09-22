@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback Form Validation</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Feedback Form Validation</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Validate a feedback form before submission.</p>
+<form id="feedbackForm" onsubmit="return validateFeedback(event)">
+<input id="fbName" placeholder="Name"><br>
+<textarea id="fbMsg" placeholder="Your feedback" rows="3" style="width:100%;"></textarea><br>
+<button class="btn" type="submit">Submit Feedback</button>
+</form>
+<div id="fbOut" class="output-area"></div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function validateFeedback(e){
+  e.preventDefault();
+  const name = document.getElementById('fbName').value.trim();
+  const msg = document.getElementById('fbMsg').value.trim();
+  const out = document.getElementById('fbOut');
+  if(!name || !msg){ out.textContent = "Please fill in all fields."; return false; }
+  out.textContent = "Thank you for your feedback, " + name + "!";
+  return false;
+}
+</script>
+</body>
+</html>

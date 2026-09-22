@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currency Converter (API)</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Currency Converter (API)</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Convert between currencies using a live exchange rate API.</p>
+<input id="currAmt" type="number" placeholder="Amount" value="1">
+<select id="currFrom"><option>USD</option><option>EUR</option><option>INR</option><option>GBP</option></select> to
+<select id="currTo"><option>INR</option><option>USD</option><option>EUR</option><option>GBP</option></select>
+<button class="btn" onclick="convertCurrency()">Convert</button>
+<p id="currOut"></p>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+async function convertCurrency(){
+  const amt = parseFloat(document.getElementById('currAmt').value);
+  const from = document.getElementById('currFrom').value;
+  const to = document.getElementById('currTo').value;
+  const out = document.getElementById('currOut');
+  if(!amt){ out.textContent = "Enter a valid amount."; return; }
+  out.textContent = "Loading...";
+  try{
+    const data = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`).then(r=>r.json());
+    const rate = data.rates[to];
+    out.textContent = amt + " " + from + " = " + (amt*rate).toFixed(2) + " " + to;
+  }catch(err){ out.textContent = "Could not fetch rates (offline or blocked)."; }
+}
+</script>
+</body>
+</html>

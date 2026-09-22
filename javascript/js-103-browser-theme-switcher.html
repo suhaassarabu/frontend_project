@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theme Switcher using localStorage</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Theme Switcher using localStorage</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Toggle and persist light/dark mode using localStorage.</p>
+<button class="btn" onclick="toggleTheme()">Toggle Theme</button>
+<p id="themeStatus"></p>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function applyTheme(){
+  const theme = localStorage.getItem('siteTheme') || 'dark';
+  document.body.style.background = theme === 'light' ? '#f1f5f9' : '';
+  document.body.style.color = theme === 'light' ? '#111' : '';
+  document.getElementById('themeStatus').textContent = "Current theme: " + theme;
+}
+function toggleTheme(){
+  const current = localStorage.getItem('siteTheme') || 'dark';
+  localStorage.setItem('siteTheme', current === 'dark' ? 'light' : 'dark');
+  applyTheme();
+}
+applyTheme();
+</script>
+</body>
+</html>

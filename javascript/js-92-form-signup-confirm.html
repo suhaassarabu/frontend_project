@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signup Form with Password Confirmation</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Signup Form with Password Confirmation</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Validate a signup form with matching password confirmation.</p>
+<form id="signupForm" onsubmit="return validateSignup(event)">
+<input id="signupPass" type="password" placeholder="Password"><br>
+<input id="signupConfirm" type="password" placeholder="Confirm Password"><br>
+<button class="btn" type="submit">Sign Up</button>
+</form>
+<div id="signupOut" class="output-area"></div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function validateSignup(e){
+  e.preventDefault();
+  const pass = document.getElementById('signupPass').value;
+  const confirm = document.getElementById('signupConfirm').value;
+  const out = document.getElementById('signupOut');
+  if(pass !== confirm){ out.textContent = "Passwords do not match."; return false; }
+  if(pass.length < 6){ out.textContent = "Password too short."; return false; }
+  out.textContent = "Signup successful!";
+  return false;
+}
+</script>
+</body>
+</html>

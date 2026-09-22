@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sessionStorage Demo</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>sessionStorage Demo</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Store and retrieve data using sessionStorage.</p>
+<input id="ssInput" placeholder="Enter a value">
+<button class="btn" onclick="saveSS()">Save</button>
+<button class="btn" onclick="loadSS()">Load</button>
+<div id="ssOut" class="output-area"></div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function saveSS(){
+  sessionStorage.setItem('value', document.getElementById('ssInput').value);
+  document.getElementById('ssOut').textContent = "Saved to sessionStorage.";
+}
+function loadSS(){
+  document.getElementById('ssOut').textContent = "Stored value: " + (sessionStorage.getItem('value') || "(none)");
+}
+</script>
+</body>
+</html>

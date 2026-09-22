@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Validation Errors (No Reload)</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Dynamic Validation Errors (No Reload)</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Show live validation error messages without reloading the page.</p>
+<form id="dynErrForm" onsubmit="return false;">
+<input id="dynErrEmail" placeholder="Email" oninput="validateEmailLive()"><br>
+<span id="emailErr" style="color:#ef4444;"></span>
+</form>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function validateEmailLive(){
+  const val = document.getElementById('dynErrEmail').value;
+  const errEl = document.getElementById('emailErr');
+  if(val === ""){ errEl.textContent = ""; return; }
+  const valid = /^[^@]+@[^@]+\.[^@]+$/.test(val);
+  errEl.textContent = valid ? "Looks good!" : "Invalid email format.";
+  errEl.style.color = valid ? "#22c55e" : "#ef4444";
+}
+</script>
+</body>
+</html>

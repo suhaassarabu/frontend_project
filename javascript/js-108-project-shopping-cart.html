@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Shopping Cart</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Simple Shopping Cart</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A basic shopping cart with item totals.</p>
+<button class="btn" onclick="addProduct('Notebook', 60)">Add Notebook ₹60</button>
+<button class="btn" onclick="addProduct('Pen', 15)">Add Pen ₹15</button>
+<ul id="shopCartList" class="program-list" style="margin-top:12px;"></ul>
+<p id="shopCartTotal">Total: ₹0</p>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+let cartTotal = 0;
+function addProduct(name, price){
+  cartTotal += price;
+  const li = document.createElement('li');
+  li.textContent = name + " - ₹" + price;
+  document.getElementById('shopCartList').appendChild(li);
+  document.getElementById('shopCartTotal').textContent = "Total: ₹" + cartTotal;
+}
+</script>
+</body>
+</html>

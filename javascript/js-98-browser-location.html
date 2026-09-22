@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Location Object</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Location Object</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrate JavaScript Location object properties.</p>
+<button class="btn" onclick="showLoc()">Show Page Location</button>
+<div id="locOut" class="output-area"></div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function showLoc(){
+  document.getElementById('locOut').innerHTML =
+    "Href: " + location.href + "<br>" +
+    "Protocol: " + location.protocol + "<br>" +
+    "Hostname: " + (location.hostname || "local file");
+}
+</script>
+</body>
+</html>
