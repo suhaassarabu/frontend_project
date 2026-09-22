@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ES6 let, const, Template Literals, Destructuring</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>ES6 let, const, Template Literals, Destructuring</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrates ES6 let, const, template literals, and destructuring.</p>
+    <button class="btn" onclick="run()">Run</button><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function run(){
+  let x = 10; const y = 20;
+  const name = "Student";
+  const greeting = `Hello, ${name}! x + y = ${x+y}`;
+  const [first, second] = [1,2];
+  const {a, b} = {a:100, b:200};
+  document.getElementById('output').innerHTML = `${greeting}<br>Array destructure: ${first}, ${second}<br>Object destructure: ${a}, ${b}`;
+}
+</script>
+</body>
+</html>

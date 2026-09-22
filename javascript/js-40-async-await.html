@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Callbacks, Promises, Async/Await</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Callbacks, Promises, Async/Await</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrates callbacks, promises, and async/await.</p>
+    <button class="btn" onclick="run()">Run</button><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function delayedValue(cb){ setTimeout(()=>cb(42), 500); }
+function promiseValue(){ return new Promise(resolve => setTimeout(()=>resolve(100), 500)); }
+async function run(){
+  const out = document.getElementById('output');
+  out.textContent = "Loading...";
+  delayedValue(val => { out.textContent = "Callback result: " + val; });
+  const promiseResult = await promiseValue();
+  out.textContent += " | Promise/async-await result: " + promiseResult;
+}
+</script>
+</body>
+</html>

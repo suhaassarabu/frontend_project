@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>String Methods</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>String Methods</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrates common string methods.</p>
+    <button class="btn" onclick="run()">Run</button><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function run(){
+  const s = "  Hello JavaScript World  ";
+  document.getElementById('output').innerHTML = `
+    trim(): "${s.trim()}"<br>
+    upper: ${s.toUpperCase()}<br>
+    slice(2,7): ${s.trim().slice(0,5)}<br>
+    includes("Java"): ${s.includes("Java")}<br>
+    replace: ${s.trim().replace("World","Universe")}`;
+}
+</script>
+</body>
+</html>

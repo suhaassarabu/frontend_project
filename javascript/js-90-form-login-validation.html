@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form Validation</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Login Form Validation</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Validate username and password fields on a login form.</p>
+<form id="loginForm" onsubmit="return validateLogin(event)">
+<input id="loginUser" placeholder="Username"><br>
+<input id="loginPass" type="password" placeholder="Password"><br>
+<button class="btn" type="submit">Login</button>
+</form>
+<div id="loginOut" class="output-area"></div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function validateLogin(e){
+  e.preventDefault();
+  const user = document.getElementById('loginUser').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  const out = document.getElementById('loginOut');
+  if(!user || !pass){ out.textContent = "Username and password are required."; return false; }
+  if(pass.length < 6){ out.textContent = "Password must be at least 6 characters."; return false; }
+  out.textContent = "Login validated for " + user + ".";
+  return false;
+}
+</script>
+</body>
+</html>

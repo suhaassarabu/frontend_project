@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spread and Rest Operators</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Spread and Rest Operators</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrates spread and rest operators.</p>
+    <button class="btn" onclick="run()">Run</button><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function sumAll(...nums){ return nums.reduce((a,b)=>a+b,0); }
+function run(){
+  const arr1 = [1,2,3];
+  const arr2 = [...arr1, 4, 5];
+  document.getElementById('output').innerHTML = `Spread: ${arr2}<br>Rest sumAll(1,2,3,4): ${sumAll(1,2,3,4)}`;
+}
+</script>
+</body>
+</html>

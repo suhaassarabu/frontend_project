@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Validation</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Form Validation</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A general form validation program using JavaScript.</p>
+    <form onsubmit="return validateForm()">
+  <p><input id="fname" placeholder="Name"></p>
+  <p><input id="femail" placeholder="Email"></p>
+  <button class="btn" type="submit">Submit</button>
+</form><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function validateForm(){
+  const name = document.getElementById('fname').value.trim();
+  const email = document.getElementById('femail').value.trim();
+  const out = document.getElementById('output');
+  if(name === ""){ out.textContent = "Name is required."; return false; }
+  if(!email.includes('@')){ out.textContent = "Enter a valid email."; return false; }
+  out.textContent = "Form submitted successfully!";
+  return false;
+}
+</script>
+</body>
+</html>

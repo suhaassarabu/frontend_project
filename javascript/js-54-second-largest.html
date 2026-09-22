@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second-Largest in Array</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Second-Largest in Array</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Finds the second-largest element in an array.</p>
+    <input id="arr" value="4,9,2,9,7,1"><button class="btn" onclick="run()">Find</button><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function run(){
+  const arr = [...new Set(document.getElementById('arr').value.split(',').map(Number))].sort((a,b)=>b-a);
+  document.getElementById('output').textContent = "Second largest: " + (arr[1] !== undefined ? arr[1] : "N/A");
+}
+</script>
+</body>
+</html>

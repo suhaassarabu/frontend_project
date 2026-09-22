@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change Image on Click</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  #pic {
+    width: 280px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+    margin-bottom: 16px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Change Image on Click</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header> 
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Changes an image when a button is clicked.</p>
+    <img id="pic" src="https://mamp.one/wp-content/uploads/2024/09/image-resources2.jpg" alt="image"><br>
+<button class="btn" onclick="run()">Change Image</button>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+let i = 1;
+function run(){
+  i = i === 1 ? 2 : 1;
+  if (i === 1) {
+    document.getElementById('pic').src = 'https://mamp.one/wp-content/uploads/2024/09/image-resources2.jpg';
+  } else {
+    document.getElementById('pic').src = 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80';
+  }
+}
+</script>
+</body>
+</html>

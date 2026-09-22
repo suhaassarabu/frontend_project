@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Login Form with Validation</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>.login-box{display:flex;flex-direction:column;gap:8px;max-width:280px;} .login-box input{padding:8px;}</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Responsive Login Form with Validation</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A responsive login form with JavaScript validation.</p>
+    <form class="login-box" onsubmit="return doLogin()">
+  <input id="loginUser" placeholder="Username">
+  <input id="loginPass" type="password" placeholder="Password">
+  <button class="btn" type="submit">Login</button>
+</form><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function doLogin(){
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  const out = document.getElementById('output');
+  if(!u || !p){ out.textContent = "Both fields are required."; return false; }
+  if(p.length < 6){ out.textContent = "Password too short (min 6 chars)."; return false; }
+  out.textContent = "Login successful (demo only)!";
+  return false;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Table using JavaScript</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Dynamic Table using JavaScript</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Build an HTML table dynamically with JavaScript.</p>
+<button class="btn" onclick="buildTable()">Build Table</button>
+<table class="demo-table" id="dynTable" style="margin-top:12px;"></table>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function buildTable(){
+  const data = [["Name","Score"],["Asha","88"],["Ravi","92"],["Meera","79"]];
+  const table = document.getElementById('dynTable');
+  table.innerHTML = "";
+  data.forEach((row,i)=>{
+    const tr = document.createElement('tr');
+    row.forEach(cell=>{
+      const el = document.createElement(i===0 ? 'th':'td');
+      el.textContent = cell;
+      tr.appendChild(el);
+    });
+    table.appendChild(tr);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Delegation</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Event Delegation</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrate event delegation using a single parent listener.</p>
+<ul id="delegateList" class="program-list">
+<li>Item 1</li><li>Item 2</li><li>Item 3</li>
+</ul>
+<div id="delegateOut" class="output-area"></div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+document.getElementById('delegateList').addEventListener('click', function(e){
+  if(e.target.tagName === 'LI'){
+    document.getElementById('delegateOut').textContent = "You clicked: " + e.target.textContent;
+  }
+});
+</script>
+</body>
+</html>

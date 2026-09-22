@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change CSS Styles using JS</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Change CSS Styles using JS</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Change an element's CSS styles dynamically.</p>
+<div id="styleBox" style="padding:20px;border-radius:8px;background:#3b82f6;color:#fff;">Style me</div>
+<button class="btn" onclick="changeStyle()">Change Style</button>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function changeStyle(){
+  const box = document.getElementById('styleBox');
+  const colors = ['#3b82f6','#ef4444','#22c55e','#f59e0b','#a855f7'];
+  box.style.background = colors[Math.floor(Math.random()*colors.length)];
+  box.style.borderRadius = Math.floor(Math.random()*30) + "px";
+}
+</script>
+</body>
+</html>

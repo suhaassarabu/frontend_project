@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add/Remove CSS Classes Dynamically</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.highlight{background:#fde68a;color:#111;border-radius:6px;}</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Add/Remove CSS Classes Dynamically</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Toggle CSS classes on an element dynamically.</p>
+<p id="classBox" style="padding:14px;">Toggle my class</p>
+<button class="btn" onclick="toggleClass()">Toggle Highlight</button>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function toggleClass(){
+  document.getElementById('classBox').classList.toggle('highlight');
+}
+</script>
+</body>
+</html>

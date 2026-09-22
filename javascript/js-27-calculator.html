@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Calculator</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.calc{max-width:220px;}
+.calc input{width:100%;padding:10px;font-size:1.2rem;margin-bottom:8px;text-align:right;}
+.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.calc-grid button{padding:12px;border:none;border-radius:6px;background:#4f46e5;color:#fff;cursor:pointer;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Simple Calculator</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A working calculator using HTML, CSS, and JavaScript.</p>
+    <div class="calc">
+  <input id="calcDisplay" readonly>
+  <div class="calc-grid">
+    <button onclick="press('7')">7</button><button onclick="press('8')">8</button><button onclick="press('9')">9</button><button onclick="press('/')">/</button>
+    <button onclick="press('4')">4</button><button onclick="press('5')">5</button><button onclick="press('6')">6</button><button onclick="press('*')">*</button>
+    <button onclick="press('1')">1</button><button onclick="press('2')">2</button><button onclick="press('3')">3</button><button onclick="press('-')">-</button>
+    <button onclick="press('0')">0</button><button onclick="clearCalc()">C</button><button onclick="calcEq()">=</button><button onclick="press('+')">+</button>
+  </div>
+</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function press(v){ document.getElementById('calcDisplay').value += v; }
+function clearCalc(){ document.getElementById('calcDisplay').value = ""; }
+function calcEq(){
+  try{ document.getElementById('calcDisplay').value = eval(document.getElementById('calcDisplay').value); }
+  catch(e){ document.getElementById('calcDisplay').value = "Error"; }
+}
+</script>
+</body>
+</html>

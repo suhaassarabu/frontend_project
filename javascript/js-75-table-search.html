@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search/Filter Table Records</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Search/Filter Table Records</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Filter table rows based on a search input.</p>
+<input id="tableSearch" placeholder="Search name..." onkeyup="filterTable()">
+<table class="demo-table" id="searchTable" style="margin-top:12px;">
+<tr><th>Name</th><th>City</th></tr>
+<tr><td>Asha</td><td>Chennai</td></tr>
+<tr><td>Ravi</td><td>Hyderabad</td></tr>
+<tr><td>Meera</td><td>Mumbai</td></tr>
+<tr><td>Karthik</td><td>Bangalore</td></tr>
+</table>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function filterTable(){
+  const val = document.getElementById('tableSearch').value.toLowerCase();
+  document.querySelectorAll('#searchTable tr').forEach((row,i)=>{
+    if(i===0) return;
+    row.style.display = row.textContent.toLowerCase().includes(val) ? "" : "none";
+  });
+}
+</script>
+</body>
+</html>

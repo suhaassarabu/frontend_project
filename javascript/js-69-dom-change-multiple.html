@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change Multiple Elements Simultaneously</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Change Multiple Elements Simultaneously</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Update several HTML elements at once.</p>
+<p class="multiBox">Box 1</p><p class="multiBox">Box 2</p><p class="multiBox">Box 3</p>
+<button class="btn" onclick="changeAll()">Change All</button>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function changeAll(){
+  document.querySelectorAll('.multiBox').forEach((el,i)=>{
+    el.style.color = "#3b82f6";
+    el.textContent = "Updated Box " + (i+1);
+  });
+}
+</script>
+</body>
+</html>

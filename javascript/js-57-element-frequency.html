@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frequency of Elements</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Frequency of Elements</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Finds the frequency of each element in an array.</p>
+    <input id="arr" value="1,2,2,3,3,3,4"><button class="btn" onclick="run()">Find Frequency</button><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function run(){
+  const arr = document.getElementById('arr').value.split(',').map(s=>s.trim());
+  const freq = {};
+  arr.forEach(el => { freq[el] = (freq[el] || 0) + 1; });
+  document.getElementById('output').innerHTML = Object.entries(freq).map(([k,v]) => `${k}: ${v}`).join('<br>');
+}
+</script>
+</body>
+</html>

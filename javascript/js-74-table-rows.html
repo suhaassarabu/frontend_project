@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add and Delete Table Rows</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Add and Delete Table Rows</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Add and remove rows from a table dynamically.</p>
+<table class="demo-table" id="rowTable"><tr><th>Name</th><th>Action</th></tr></table>
+<input id="rowName" placeholder="Enter name">
+<button class="btn" onclick="addRow()">Add Row</button>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function addRow(){
+  const name = document.getElementById('rowName').value.trim();
+  if(!name) return;
+  const table = document.getElementById('rowTable');
+  const tr = table.insertRow();
+  const c1 = tr.insertCell(0); c1.textContent = name;
+  const c2 = tr.insertCell(1);
+  const btn = document.createElement('button');
+  btn.textContent = "Delete"; btn.className = "btn";
+  btn.onclick = () => tr.remove();
+  c2.appendChild(btn);
+  document.getElementById('rowName').value = "";
+}
+</script>
+</body>
+</html>

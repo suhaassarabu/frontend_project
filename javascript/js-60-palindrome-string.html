@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palindrome String Check</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Palindrome String Check</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Checks whether a string is a palindrome.</p>
+    <input id="s" value="madam"><button class="btn" onclick="run()">Check</button><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function run(){
+  const s = document.getElementById('s').value.toLowerCase().replace(/[^a-z0-9]/g,'');
+  const rev = s.split('').reverse().join('');
+  document.getElementById('output').textContent = (s === rev) ? "It is a Palindrome" : "Not a Palindrome";
+}
+</script>
+</body>
+</html>

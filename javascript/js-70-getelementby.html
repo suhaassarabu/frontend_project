@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>getElementById & getElementsByClassName</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>getElementById & getElementsByClassName</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Select elements using getElementById and getElementsByClassName.</p>
+<p id="idTarget">I have an ID</p>
+<p class="classTarget">Class item 1</p><p class="classTarget">Class item 2</p>
+<button class="btn" onclick="run()">Select Elements</button>
+<div id="out1" class="output-area"></div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function run(){
+  const byId = document.getElementById('idTarget');
+  const byClass = document.getElementsByClassName('classTarget');
+  document.getElementById('out1').innerHTML =
+    "By ID: " + byId.textContent + "<br>By Class count: " + byClass.length;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Interactive Webpage</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Complete Interactive Webpage</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A complete interactive webpage combining HTML, CSS, and JavaScript.</p>
+    <h3>Feedback Widget</h3>
+<textarea id="fb" rows="3" placeholder="Leave feedback..."></textarea><br>
+<button class="btn" onclick="submitFb()">Submit</button>
+<ul id="fbList" class="program-list" style="margin-top:10px;"></ul>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function submitFb(){
+  const val = document.getElementById('fb').value.trim();
+  if(!val) return;
+  const li = document.createElement('li');
+  li.textContent = val;
+  document.getElementById('fbList').prepend(li);
+  document.getElementById('fb').value = "";
+}
+</script>
+</body>
+</html>

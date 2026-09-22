@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validate Email Address</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Validate Email Address</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Validates an email address using a regular expression.</p>
+    <input id="email" placeholder="Enter email" value="test@example.com">
+<button class="btn" onclick="run()">Validate</button><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function run(){
+  const email = document.getElementById('email').value;
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  document.getElementById('output').textContent = re.test(email) ? "Valid email address" : "Invalid email address";
+}
+</script>
+</body>
+</html>

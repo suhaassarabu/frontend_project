@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merge Two Arrays</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Merge Two Arrays</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Merges two arrays into one.</p>
+    <input id="arr1" value="1,2,3"><input id="arr2" value="4,5,6">
+<button class="btn" onclick="run()">Merge</button><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function run(){
+  const a = document.getElementById('arr1').value.split(',').map(Number);
+  const b = document.getElementById('arr2').value.split(',').map(Number);
+  document.getElementById('output').textContent = "Merged: " + [...a, ...b].join(", ");
+}
+</script>
+</body>
+</html>

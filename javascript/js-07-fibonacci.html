@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fibonacci Series</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Fibonacci Series</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Generates the Fibonacci series up to N terms.</p>
+    <input id="n" type="number" value="10"><button class="btn" onclick="run()">Generate</button><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function run(){
+  const n = Number(document.getElementById('n').value);
+  let a=0,b=1,series=[a,b];
+  for(let i=2;i<n;i++){ let c=a+b; series.push(c); a=b; b=c; }
+  document.getElementById('output').textContent = series.slice(0,n).join(", ");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Elements Dynamically</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Add Elements Dynamically</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Add new elements to the DOM dynamically.</p>
+<button class="btn" onclick="addItem()">Add List Item</button>
+<ul id="dynList" class="program-list" style="margin-top:12px;"></ul>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+let count = 0;
+function addItem(){
+  count++;
+  const li = document.createElement('li');
+  li.textContent = "Item " + count;
+  document.getElementById('dynList').appendChild(li);
+}
+</script>
+</body>
+</html>

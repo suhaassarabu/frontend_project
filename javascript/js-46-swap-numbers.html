@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swap Two Numbers</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Swap Two Numbers</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Swaps two numbers without using a third variable.</p>
+    <input id="a" type="number" value="5"><input id="b" type="number" value="10">
+<button class="btn" onclick="run()">Swap</button><div class="output-area" id="output">Output will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function run(){
+  let a = Number(document.getElementById('a').value), b = Number(document.getElementById('b').value);
+  a = a + b; b = a - b; a = a - b;
+  document.getElementById('output').textContent = `After swap: a = ${a}, b = ${b}`;
+}
+</script>
+</body>
+</html>

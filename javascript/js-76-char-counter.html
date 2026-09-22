@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Character Counter</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Live Character Counter</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Count characters in a textarea live as the user types.</p>
+<textarea id="counterArea" rows="4" style="width:100%;" oninput="updateCount()" maxlength="200"></textarea>
+<p id="charCount">0 / 200 characters</p>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+function updateCount(){
+  const len = document.getElementById('counterArea').value.length;
+  document.getElementById('charCount').textContent = len + " / 200 characters";
+}
+</script>
+</body>
+</html>

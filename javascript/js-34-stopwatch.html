@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stopwatch</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Stopwatch</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A working stopwatch using JavaScript.</p>
+    <div class="output-area" id="swDisplay" style="font-size:1.6rem;">00:00:00</div>
+<button class="btn" onclick="startSW()">Start</button>
+<button class="btn" onclick="stopSW()">Stop</button>
+<button class="btn" onclick="resetSW()">Reset</button>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+let swTime = 0, swInterval = null;
+function format(t){
+  const h = String(Math.floor(t/3600)).padStart(2,'0');
+  const m = String(Math.floor((t%3600)/60)).padStart(2,'0');
+  const s = String(t%60).padStart(2,'0');
+  return `${h}:${m}:${s}`;
+}
+function startSW(){ if(swInterval) return; swInterval = setInterval(()=>{ swTime++; document.getElementById('swDisplay').textContent = format(swTime); },1000); }
+function stopSW(){ clearInterval(swInterval); swInterval = null; }
+function resetSW(){ stopSW(); swTime = 0; document.getElementById('swDisplay').textContent = format(swTime); }
+</script>
+</body>
+</html>

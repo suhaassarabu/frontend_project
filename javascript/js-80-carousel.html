@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Slideshow/Carousel</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Image Slideshow/Carousel</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Build an image slideshow/carousel using JavaScript.</p>
+<div id="carousel" style="text-align:center;">
+<div id="slideText" style="padding:40px;background:#1e293b;color:#fff;border-radius:8px;">Slide 1</div>
+<button class="btn" onclick="prevSlide()">Prev</button>
+<button class="btn" onclick="nextSlide()">Next</button>
+</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+const slides = ["Slide 1","Slide 2","Slide 3","Slide 4"];
+let idx = 0;
+function show(){ document.getElementById('slideText').textContent = slides[idx]; }
+function nextSlide(){ idx = (idx+1) % slides.length; show(); }
+function prevSlide(){ idx = (idx-1+slides.length) % slides.length; show(); }
+</script>
+</body>
+</html>

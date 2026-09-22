@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drag and Drop Application</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Drag and Drop Application</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrate HTML5 drag-and-drop between two zones.</p>
+<div style="display:flex;gap:20px;">
+<div id="dragItem" draggable="true" style="padding:16px;background:#3b82f6;color:#fff;border-radius:6px;">Drag Me</div>
+<div id="dropZone" style="flex:1;min-height:60px;border:2px dashed #94a3b8;border-radius:6px;padding:10px;">Drop Here</div>
+</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+const item = document.getElementById('dragItem');
+const zone = document.getElementById('dropZone');
+item.addEventListener('dragstart', e=>{ e.dataTransfer.setData('text', 'dragItem'); });
+zone.addEventListener('dragover', e=>{ e.preventDefault(); });
+zone.addEventListener('drop', e=>{
+  e.preventDefault();
+  zone.appendChild(item);
+  zone.style.borderColor = "#22c55e";
+});
+</script>
+</body>
+</html>

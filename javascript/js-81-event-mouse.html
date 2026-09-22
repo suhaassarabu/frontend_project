@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mouse Events</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Mouse Events</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrate mouse events: click, dblclick, mouseover, mouseout.</p>
+<div id="mouseBox" style="padding:30px;background:#334155;color:#fff;border-radius:8px;text-align:center;">Move / click me</div>
+<div id="mouseOut" class="output-area" style="margin-top:10px;">Event log will appear here.</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+const box = document.getElementById('mouseBox');
+const log = document.getElementById('mouseOut');
+['click','dblclick','mouseover','mouseout','mousemove'].forEach(evt=>{
+  box.addEventListener(evt, ()=>{ if(evt!=='mousemove'){ log.textContent = "Event: " + evt; } });
+});
+</script>
+</body>
+</html>

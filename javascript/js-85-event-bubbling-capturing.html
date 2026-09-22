@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Bubbling and Capturing</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Event Bubbling and Capturing</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">Demonstrate event bubbling and capturing phases.</p>
+<div id="outerDiv" style="padding:20px;background:#1e293b;">Outer
+  <div id="innerDiv" style="padding:20px;background:#3b82f6;margin-top:10px;">Inner (click me)</div>
+</div>
+<div id="bubbleOut" class="output-area" style="margin-top:10px;"></div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+const out = document.getElementById('bubbleOut');
+document.getElementById('outerDiv').addEventListener('click', ()=>{ out.textContent += "Outer (bubble) "; }, false);
+document.getElementById('innerDiv').addEventListener('click', ()=>{ out.textContent = "Inner clicked -> "; }, false);
+document.getElementById('outerDiv').addEventListener('click', ()=>{ }, true);
+</script>
+</body>
+</html>

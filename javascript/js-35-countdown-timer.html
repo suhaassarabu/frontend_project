@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style></style>
+</head>
+<body>
+<header class="site-header">
+  <h1>Countdown Timer</h1>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+<nav class="crumbs">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Back to Programs</a>
+</nav>
+<main>
+  <div class="program-box">
+    <p class="description">A countdown timer using JavaScript.</p>
+    <input id="ctSeconds" type="number" value="10" style="width:80px;">
+<button class="btn" onclick="startCountdown()">Start</button>
+<div class="output-area" id="ctDisplay" style="font-size:1.6rem;">--</div>
+  </div>
+</main>
+<footer class="page-nav">
+  <a class="btn" href="../index.html">Home</a>
+  <a class="btn" href="index.html">Back to Programs</a>
+</footer>
+<script>
+let ctInterval = null;
+function startCountdown(){
+  clearInterval(ctInterval);
+  let remaining = Number(document.getElementById('ctSeconds').value);
+  const display = document.getElementById('ctDisplay');
+  display.textContent = remaining;
+  ctInterval = setInterval(()=>{
+    remaining--;
+    if(remaining <= 0){ clearInterval(ctInterval); display.textContent = "Time's up!"; }
+    else display.textContent = remaining;
+  }, 1000);
+}
+</script>
+</body>
+</html>
