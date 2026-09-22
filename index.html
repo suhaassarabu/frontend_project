@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML CSS JavaScript Practical Programs | Suhaas Sarabu</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <h1>HTML CSS JavaScript</h1>
+  <p>Practical Programs Dashboard</p>
+  <span class="author-chip">by <strong>Suhaas Sarabu</strong></span>
+</header>
+
+<section class="globe-hero">
+  <div class="globe-stage" id="globeStage">
+    <canvas id="globeCanvas" aria-hidden="true"></canvas>
+  </div>
+
+  <div class="hero-copy">
+    <span class="eyebrow">Programs Universe</span>
+    <h2 class="hero-title">Spin the globe, pick a library</h2>
+    <p class="hero-sub">Click a glowing marker on the globe, or use the links below, to jump straight into the HTML, CSS or JavaScript programs.</p>
+
+    <nav class="globe-links" aria-label="Program libraries">
+      <a class="globe-link" data-key="html" data-label="HTML" href="html/index.html">
+        <span class="gl-dot"></span>
+        <span class="gl-text"><strong>HTML</strong><small>15 programs</small></span>
+        <span class="gl-arrow">&rarr;</span>
+      </a>
+      <a class="globe-link" data-key="css" data-label="CSS" href="css/index.html">
+        <span class="gl-dot"></span>
+        <span class="gl-text"><strong>CSS</strong><small>73 programs</small></span>
+        <span class="gl-arrow">&rarr;</span>
+      </a>
+      <a class="globe-link" data-key="js" data-label="JS" href="javascript/index.html">
+        <span class="gl-dot"></span>
+        <span class="gl-text"><strong>JavaScript</strong><small>112 programs</small></span>
+        <span class="gl-arrow">&rarr;</span>
+      </a>
+    </nav>
+  </div>
+</section>
+
+<main>
+  <div class="card-grid">
+    <div class="card">
+      <h2>HTML Programs</h2>
+      <p>15 programs covering structure, forms, tables, media, and semantics.</p>
+      <a class="btn" href="html/index.html">View HTML Programs</a>
+    </div>
+    <div class="card">
+      <h2>CSS Programs</h2>
+      <p>73 programs covering styling, layout, Flexbox, Grid, and animation.</p>
+      <a class="btn" href="css/index.html">View CSS Programs</a>
+    </div>
+    <div class="card">
+      <h2>JavaScript Programs</h2>
+      <p>112 programs covering logic, DOM, events, forms, and mini projects.</p>
+      <a class="btn" href="javascript/index.html">View JavaScript Programs</a>
+    </div>
+  </div>
+</main>
+
+<p class="site-credit">Made by <strong>Suhaas Sarabu</strong></p>
+
+<script>
+/* Compact dot-matrix globe. Pure canvas, no external libraries. */
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('globeCanvas');
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+
+  var LOGICAL = 340, CX = 170, CY = 170, R = 100;      // drawing space (px)
+  var TAU = Math.PI * 2;
+  var TILT = 0.42, COS_T = Math.cos(TILT), SIN_T = Math.sin(TILT);
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 1-degree land mask (360 x 180 bits, row 0 = 90N) ---------- */
+  var MASK = atob('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//wH//////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB///////////+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////+AAAAAP/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//5/////////AAAAB//gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//g/////////AAAAAf+AAAAAAAAAAAAAYAAAAAAAAAAAAAAAAAAAAAAAAAA//+AH////////AAAAAAAAAAAAAAAAAAAP/gAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAf/////+AAAAAAAAAAAAAAAAAAP//+AAAAAAAAAAAAAAAAAAAAAAAAAD/8AAAH/////+AAAAAAAAAAAAAAAAAH///+AAAAAAAAAAAAAAAAAAAAf8AAAA/+AAAB/////8AAAAAAAAAAAAMAAAP//////+AAAAAAAAAAAAAAAAAAf//AAA//4AAB/////4AAAAAAAAAAAA4AHn////////wAAAAAAAAAAAAAAAAAPf/4AAf//AAA/////wAAAAAAAAAAABAAP/////////+H//AAAAAAAAP/wAAAAf/+AAP//4AAP////gAAAAAAD/gAAAAAf//////////////gAAAAAB//////8H//AAB//+AAP////wAAAAAA//4AAAA//////////////////+AwAP///////+IAAf/gf/gA/////AAAAAAD///4AA/////////////////////+Af/////////////wH/wA///8AAAAAAAP////////////////////////////wf/////////////AH/8A///gAP4AAAAf////////////////////////////8/////////////+AH/8Af/+AA/8AAAA/+//////////////////////////AYP////////////4Af/4AP/4AAf8AAAD/9/////////////////////////8AAD////////////gAAfwAH/gAADgAAAP/7/////////////////////////8AAH///////////+AAAHAAD/AAAAAAAA//n/////////////////////////8AAH///////////4AA/gAAB/AAAAAAAB//H/////////////////////////AAAD//z////////wAA/wAAAeAAAAAAAB//D////////////////////////8AAAA/7gA///////wAA/44AAAAAAAAAAB//gP//////////////////////wAAAAAfwAAH//////wAAf/4AAAAAAAAAYA5/A///////////////////8AAPgAAAAAHAAAB//////4AAf/8AAAAAAAAA8AA+C///////////////////4AAfgAAAAAOAAAA///////wAf/+AAAAAAAAA8AO8H///////////////////gAA/gAAAAAgAAAAf//////+Af//AAAAAAAAAcAMYH///////////////////AAA/gAAAAAAAAAAP///////w///wAAAAAAAHmAMB///////////////////+AAA/AAAAAAAAAAAH///////x///4AAAAAAAPPB//////////////////////yAA+AAAAAAAAAAAD///////5///8AAAAAAAPfz//////////////////////6AA8AAAAAAAAAAAD///////////8AAAAAAAAP3//////////////////////+AAwAAAAAAAAAAAA///////////2AAAAAAAAYf//////////////////////6AAAAAAAAAAAAAAAP/////////4OAAAAAAAAD///////////////////////6AAAAAAAAAAAAAAAP/////////wfAAAAAAAAP///////////////////////7AAAAAAAAAAAAAAAf/////B///gfgAAAAAAAP///////////////////////zAAAAAAAAAAAAAAAP/////////wAAAAAAAAAD//////n/h//////////////DAAAAAAAAAAAAAAAP/////5f///AAAAAAAAAB/////HP/B/////////////+AAAAAAAAAAAAAAAAP/////7D/+8AAAAAAAAAB//n/+AP+D/////////////8HAAAAAAAAAAAAAAAP/////7mfw4AAAAAAAAD//jz/8AD/D/////////////wHgAAAAAAAAAAAAAAP/////z9/wAAAAAAAAAH/4B8/8AB/B////////////+APgAAAAAAAAAAAAAAP////////gAAAAAAAAAH/wAef+/B/h////////////8AAAAAAAAAAAAAAAAAf///////+AAAAAAAAAAH/gMPPP///w////////////8AMAAAAAAAAAAAAAAAP///////8AAAAAAAAAAH/AMCOP///g//////////+f8AMAAAAAAAAAAAAAAAH///////4AAAAAAAAAAH/AACGH///g//////////8B8AMAAAAAAAAAAAAAAAD///////4AAAAAAAAAAH+AAcGH///h//////////+A8A4AAAAAAAAAAAAAAAD///////wAAAAAAAAAAAwP+ACB///////////////g8D4AAAAAAAAAAAAAAAB///////4AAAAAAAAAAAz/+AAwA//////////////A4/4AAAAAAAAAAAAAAAB///////wAAAAAAAAAAB//+AAAA//////////////AB+AAAAAAAAAAAAAAAAAP/////+AAAAAAAAAAAD//+AAAB//////////////ADQAAAAAAAAAAAAAAAAAH/////8AAAAAAAAAAAH///4HAB//////////////gDAAAAAAAAAAAAAAAAAAH/////4AAAAAAAAAAAP///+P4D//////////////wDAAAAAAAAAAAAAAAAAAC/////4AAAAAAAAAAAP/////////////////////wAAAAAAAAAAAAAAAAAAADP///g4AAAAAAAAAAAP/////////v///////////wAAAAAAAAAAAAAAAAAAABn//gAcAAAAAAAAAAA//////////n///////////gAAAAAAAAAAAAAAAAAAAA3/+AAcAAAAAAAAAAB///////9//j///////////gAAAAAAAAAAAAAAAAAAAAz/+AAMAAAAAAAAAAD///////8//wH//////////AAAAAAAAAAAAAAAAAAAAAZ/+AAMAAAAAAAAAAH///////+f/8b/////////+AAAAAAAAAAAAAAAAAAAAAM/+AAAAAAAAAAAAAH///////+f/84Af///////8QAAAAAAAAAAAAAAAAAAAAAf+AAAAAAAAAAAAAP////////P//+AP///////4wAAAAAAAAAAAAAAAAAAAAAP8AA+AAAAAAAAAAP////////H///AH///////ggAAAAAAAAAAAAAAAAAAAAAP+AIDwAAAAAAAAAf////////n///AD//8P//8AAAAAAAAAAAAAAAAAAAAAAAP+B4B4AAAAAAAAAf////////j//+AAf/wP/+IAAAAAAAAAAAAAAAAAAAAAAAH/B4ABgAAAAAAAAP////////h//8AAf/gH/8YAAAAAAAAAAAAAAAAAAAAAAAD/nwAD4AAAAAAAAP////////x//4AAf/AD/8QAQAAAAAAAAAAAAAAAAAAAAAAf/wAAAAAAAAAAAf////////4//wAAf+AD/+AAwAAAAAAAAAAAAAAAAAAAAAAH/wAAAAAAAAAAAf////////4//AAAf8AB/+AAwAAAAAAAAAAAAAAAAAAAAAAAP/AAAAAAAAAAAf////////8f8AAAP4AAP/AAwAAAAAAAAAAAAAAAAAAAAAAAH/gAAAAAAAAAAf////////+fwAAAPwAAP/gAwAAAAAAAAAAAAAAAAAAAAAAAA/gAAAAAAAAAAf/////////eAAAAHwAAP/gAQAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAAAAAAAf/////////wAAAAHwAAP/gACAAAAAAAAAAAAAAAAAAAAAAAADgDgAAAAAAAAP/////////wYAAAHwAAMfgADAAAAAAAAAAAAAAAAAAAAAAAADgP/8AAAAAAAH//////////4AAADwAAMPAABAAAAAAAAAAAAAAAAAAAAAAAABwP/+AAAAAAAD//////////4AAADgAAMEAABAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAB//////////wAAABIAAOAAAHAAAAAAAAAAAAAAAAAAAAAAAAAH///wAAAAAAA//////////wAAAAMAAOAAAPgAAAAAAAAAAAAAAAAAAAAAAAAA///8AAAAAAAf/////////gAAAAMAAHAAEDAAAAAAAAAAAAAAAAAAAAAAAAAA////gAAAAAAP/B///////gAAAAAAADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAA////wAAAAAADAA///////AAAAAAAAzgAeAAAAAAAAAAAAAAAAAAAAAAAAAAA////4AAAAAAAAAH/////+AAAAAAAA5wB8AAAAAAAAAAAAAAAAAAAAAAAAAAA////4AAAAAAAAAH/////8AAAAAAAAewD8AAAAAAAAAAAAAAAAAAAAAAAAAAB////8AAAAAAAAAH/////4AAAAAAAAPQf8AAAAAAAAAAAAAAAAAAAAAAAAAAD////8AAAAAAAAAH/////wAAAAAAAAHgf88AAAAAAAAAAAAAAAAAAAAAAAAAD////+AAAAAAAAAH/////gAAAAAAAAHwf4wAAAAAAAAAAAAAAAAAAAAAAAAAD/////gAAAAAAAAH/////AAAAAAAAAD4f48B4AAAAAAAAAAAAAAAAAAAAAAAD/////+AAAAAAAAH////+AAAAAAAAAB8P44Ab4AAAAAAAAAAAAAAAAAAAAAAD//////4AAAAAAAD////+AAAAAAAAAB8Dw4Af+AAAAAAAAAAAAAAAAAAAAAAH//////+AAAAAAAB////8AAAAAAAAAA8AB4AH/gAAAAAAAAAAAAAAAAAAAAAH///////gAAAAAAA////8AAAAAAAAAAMABgAB/4AAAAAAAAAAAAAAAAAAAAAH///////gAAAAAAA////4AAAAAAAAAAB4AAAA/8AAAAAAAAAAAAAAAAAAAAAD///////gAAAAAAAf///4AAAAAAAAAAD/AAAA/8AAAAAAAAAAAAAAAAAAAAAB///////gAAAAAAAf///8AAAAAAAAAAAHAAAA/AAAAAAAAAAAAAAAAAAAAAAA///////gAAAAAAAf///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///////AAAAAAAAf///+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////+AAAAAAAAf///+AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAf/////8AAAAAAAAf///+AQAAAAAAAAAAAAB+CAAAAAAAAAAAAAAAAAAAAAAAf/////4AAAAAAAA////+AwAAAAAAAAAAAAD8HAAAAAAAAAAAAAAAAAAAAAAAP/////4AAAAAAAA////+B4AAAAAAAAAAAA/8HgAAAAAAAAAAAAAAAAAAAAAAH/////4AAAAAAAA////8B4AAAAAAAAAAAD/+HwAAAAAAAAAAAAAAAAAAAAAAB/////4AAAAAAAA////4HwAAAAAAAAAAAH//HwAAAAAAAAAAAAAAAAAAAAAAA/////4AAAAAAAA////wPwAAAAAAAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAf////4AAAAAAAA////gPgAAAAAAAAAAAP///4AAAAAAAAAAAAAAAAAAAAAAAf////wAAAAAAAA////APgAAAAAAAAAAA////8AAAAAAAAAAAAAAAAAAAAAAAP////wAAAAAAAAf//+APgAAAAAAAAAAH////+AAAAAAAAAAAAAAAAAAAAAAAP////gAAAAAAAAP//+AfgAAAAAAAAAAf/////AAAAAAAAAAAAAAAAAAAAAAAP////gAAAAAAAAP///AfAAAAAAAAAAB//////gAAAAAAAAAAAAAAAAAAAAAAP///8AAAAAAAAAH//+AfAAAAAAAAAAA//////wAAAAAAAAAAAAAAAAAAAAAAf///wAAAAAAAAAH//8AOAAAAAAAAAAA//////wAAAAAAAAAAAAAAAAAAAAAAf///gAAAAAAAAAH//4AEAAAAAAAAAAA//////4AAAAAAAAAAAAAAAAAAAAAAf///AAAAAAAAAAH//4AAAAAAAAAAAAA//////4AAAAAAAAAAAAAAAAAAAAAAf///AAAAAAAAAAD//4AAAAAAAAAAAAA//////8AAAAAAAAAAAAAAAAAAAAAAf///AAAAAAAAAAD//4AAAAAAAAAAAAAf/////8AAAAAAAAAAAAAAAAAAAAAA///+AAAAAAAAAAB//wAAAAAAAAAAAAAf/////8AAAAAAAAAAAAAAAAAAAAAA///8AAAAAAAAAAB//gAAAAAAAAAAAAAf/////4AAAAAAAAAAAAAAAAAAAAAA///4AAAAAAAAAAA//AAAAAAAAAAAAAAf/////4AAAAAAAAAAAAAAAAAAAAAA///wAAAAAAAAAAA/+AAAAAAAAAAAAAAf/gP//wAAAAAAAAAAAAAAAAAAAAAA///gAAAAAAAAAAA/4AAAAAAAAAAAAAAf+AP//wAAAAAAAAAAAAAAAAAAAAAA///AAAAAAAAAAAAYAAAAAAAAAAAAAAAPAAE//gAAAAAAAAAAAAAAAAAAAAAB//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//gAABAAAAAAAAAAAAAAAAAAB//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/gAAAwAAAAAAAAAAAAAAAAAD//4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/AAAA8AAAAAAAAAAAAAAAAAD//gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAA8AAAAAAAAAAAAAAAAAD/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAD/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAD/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAAADwAAAAAAAAAAAAAAAAAD/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAPAAAAAAAAAAAAAAAAAAD/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAfAAAAAAAAAAAAAAAAAAD/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAAAAAH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAAAAAH+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAAAAAP/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+  function isLand(lat, lon) {
+    var col = Math.min(359, Math.max(0, Math.floor(lon + 180)));
+    var row = Math.min(179, Math.max(0, Math.floor(90 - lat)));
+    var idx = row * 360 + col;
+    return (MASK.charCodeAt(idx >> 3) >> (7 - (idx & 7))) & 1;
+  }
+
+  function rng(seed) {                                   // small deterministic PRNG
+    return function () {
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  var rand = rng(20260920);
+
+  /* ---------- surface dots (Fibonacci sphere) ---------- */
+  var land = [], ocean = [];
+  var N = 11500, GOLD = Math.PI * (3 - Math.sqrt(5));
+  for (var i = 0; i < N; i++) {
+    var y = 1 - (i + 0.5) * 2 / N, rr = Math.sqrt(1 - y * y), th = GOLD * i;
+    var x = Math.cos(th) * rr, z = Math.sin(th) * rr;
+    var lat = Math.asin(y) * 180 / Math.PI, lon = Math.atan2(x, z) * 180 / Math.PI;
+    if (isLand(lat, lon)) {
+      var city = rand() < 0.15;
+      land.push({ x: x, y: y, z: z, city: city, ph: rand() * TAU,
+                  s: city ? 1.25 + rand() * 0.35 : 0.72 + rand() * 0.3,
+                  b: city ? 0.8 + rand() * 0.2 : 0.38 + rand() * 0.34 });
+    } else if (rand() < 0.10) {
+      ocean.push({ x: x, y: y, z: z });
+    }
+  }
+
+  var LX = new Float32Array(land.length), LY = new Float32Array(land.length), LA = new Float32Array(land.length);
+
+  /* ---------- soft glow sprite for bright "city lights" ---------- */
+  var glow = document.createElement('canvas');
+  glow.width = glow.height = 32;
+  (function () {
+    var g = glow.getContext('2d'), gr = g.createRadialGradient(16, 16, 0, 16, 16, 16);
+    gr.addColorStop(0, 'rgba(186,230,253,0.95)');
+    gr.addColorStop(0.35, 'rgba(56,189,248,0.35)');
+    gr.addColorStop(1, 'rgba(56,189,248,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 32, 32);
+  })();
+
+  /* ---------- link markers (hrefs come from the visible links) ---------- */
+  var MARKERS = [
+    { key: 'html', lat: 22, lon: 79,  color: '#22d3ee' },
+    { key: 'css',  lat: 48, lon: 9,   color: '#60a5fa' },
+    { key: 'js',   lat: 39, lon: -98, color: '#a5b4fc' }
+  ];
+  var links = {};
+  MARKERS.forEach(function (m) {
+    var a = document.querySelector('.globe-link[data-key="' + m.key + '"]');
+    m.el = a; m.href = a ? a.getAttribute('href') : '#';
+    m.label = a ? a.getAttribute('data-label') : m.key.toUpperCase();
+    m.bx = Math.cos(m.lat * Math.PI / 180) * Math.sin(m.lon * Math.PI / 180);
+    m.by = Math.sin(m.lat * Math.PI / 180);
+    m.bz = Math.cos(m.lat * Math.PI / 180) * Math.cos(m.lon * Math.PI / 180);
+    m.sx = m.sy = 0; m.depth = -1; m.hot = 0;
+    links[m.key] = m;
+  });
+
+  /* ---------- orbit rings, particles, sparks ---------- */
+  var rings = [
+    { rad: 1.36 * R, incl: 1.12, roll: -0.55, n: 150, sp: 0.16, size: 0.95, alpha: 0.85, ph: 0 },
+    { rad: 1.56 * R, incl: 0.5,  roll: 0.85,  n: 120, sp: -0.10, size: 0.75, alpha: 0.55, ph: 1.7 }
+  ];
+
+  var COLORS = ['125,211,252', '56,189,248', '147,197,253', '224,242,254', '165,180,252'];
+  var parts = [], PN = 120;
+  for (i = 0; i < PN; i++) {
+    var k = rand();
+    parts.push({
+      r: R * (1.07 + rand() * 0.55), a: rand() * TAU, lat: (rand() - 0.5) * 2.3,
+      sp: (0.03 + rand() * 0.13) * (rand() < 0.5 ? -1 : 1), ph: rand() * TAU,
+      kind: k < 0.7 ? 0 : (k < 0.88 ? 1 : 2),
+      s: k < 0.7 ? 0.7 + rand() * 1.0 : 1.7 + rand() * 1.5,
+      c: COLORS[(rand() * COLORS.length) | 0]
+    });
+  }
+
+  var sparks = [];
+  for (i = 0; i < 30; i++) sparks.push(newSpark({}, rand()));
+  function newSpark(s, t) {
+    s.a = rand() * TAU; s.t = t || 0; s.sp = 0.25 + rand() * 0.55;
+    s.reach = 0.06 + rand() * 0.3; s.len = 6 + rand() * 13;
+    return s;
+  }
+
+  /* ---------- state ---------- */
+  var rot = 1.25;                       // globe rotation (radians)
+  var focus = null;                     // marker key the globe is turned toward (side-link hover)
+  var hover = null;                     // marker key under the pointer on the globe (freezes spin)
+  var last = 0, time = 0, scale = 1, running = false;
+
+  function angDiff(a, b) {              // shortest signed angle from a to b
+    var d = (b - a) % TAU;
+    if (d > Math.PI) d -= TAU; if (d < -Math.PI) d += TAU;
+    return d;
+  }
+
+  /* ---------- drawing helpers ---------- */
+  function hex(x, y, r) {
+    ctx.beginPath();
+    for (var j = 0; j < 6; j++) {
+      var an = j * Math.PI / 3 + Math.PI / 6;
+      ctx[j ? 'lineTo' : 'moveTo'](x + Math.cos(an) * r, y + Math.sin(an) * r);
+    }
+    ctx.closePath();
+  }
+
+  function drawRing(rg, front) {
+    var ci = Math.cos(rg.incl), si = Math.sin(rg.incl), cr = Math.cos(rg.roll), sr = Math.sin(rg.roll);
+    ctx.beginPath();
+    var batch = [];
+    for (var j = 0; j < rg.n; j++) {
+      var th = j / rg.n * TAU + rg.ph + time * rg.sp;
+      var px = Math.cos(th) * rg.rad, pz = Math.sin(th) * rg.rad;
+      var py = -pz * si; pz = pz * ci;                   // incline about X
+      var qx = px * cr - py * sr, qy = px * sr + py * cr; // roll about Z
+      var ty = qy * COS_T - pz * SIN_T, tz = qy * SIN_T + pz * COS_T; // global tilt
+      if ((tz >= 0) !== front) continue;
+      var sx = CX + qx, sy = CY - ty;
+      var d = 0.35 + 0.65 * (tz / rg.rad + 1) / 2;
+      batch.push(sx, sy, d);
+    }
+    for (var b = 0; b < batch.length; b += 3) {
+      ctx.fillStyle = 'rgba(125,211,252,' + (rg.alpha * batch[b + 2]).toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.arc(batch[b], batch[b + 1], rg.size, 0, TAU);
+      ctx.fill();
+    }
+  }
+
+  function drawParticles(front) {
+    for (var j = 0; j < PN; j++) {
+      var p = parts[j];
+      var bx = Math.cos(p.lat) * Math.sin(p.a), by = Math.sin(p.lat), bz = Math.cos(p.lat) * Math.cos(p.a);
+      var ty = by * COS_T - bz * SIN_T, tz = by * SIN_T + bz * COS_T;
+      if ((tz >= 0) !== front) continue;
+      var sx = CX + bx * p.r, sy = CY - ty * p.r;
+      var al = (0.3 + 0.55 * (tz + 1) / 2) * (0.7 + 0.3 * Math.sin(time * 1.6 + p.ph));
+      ctx.fillStyle = ctx.strokeStyle = 'rgba(' + p.c + ',' + al.toFixed(3) + ')';
+      if (p.kind === 0) {
+        ctx.beginPath(); ctx.arc(sx, sy, p.s, 0, TAU); ctx.fill();
+      } else if (p.kind === 1) {
+        ctx.lineWidth = 0.9; ctx.beginPath(); ctx.arc(sx, sy, p.s, 0, TAU); ctx.stroke();
+      } else {
+        ctx.lineWidth = 0.9; hex(sx, sy, p.s); ctx.stroke();
+      }
+    }
+  }
+
+  function drawSparks() {
+    ctx.lineWidth = 1; ctx.lineCap = 'round';
+    for (var j = 0; j < sparks.length; j++) {
+      var s = sparks[j];
+      var r0 = R * (1.0 + s.reach * s.t), r1 = r0 + s.len * (0.35 + s.t);
+      var al = Math.sin(Math.min(1, s.t) * Math.PI) * 0.75;
+      var c = Math.cos(s.a), sn = Math.sin(s.a);
+      ctx.strokeStyle = 'rgba(147,210,253,' + al.toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.moveTo(CX + c * r0, CY + sn * r0);
+      ctx.lineTo(CX + c * r1, CY + sn * r1);
+      ctx.stroke();
+    }
+  }
+
+  function drawGlobe() {
+    var ca = Math.cos(rot), sa = Math.sin(rot), j, d, sx, sy;
+
+    /* body */
+    var body = ctx.createRadialGradient(CX - R * 0.35, CY - R * 0.4, R * 0.1, CX, CY, R);
+    body.addColorStop(0, '#12326f'); body.addColorStop(0.55, '#081d4a'); body.addColorStop(1, '#030a24');
+    ctx.fillStyle = body; ctx.beginPath(); ctx.arc(CX, CY, R, 0, TAU); ctx.fill();
+
+    /* faint ocean grid dots */
+    ctx.fillStyle = 'rgba(96,165,250,0.16)'; ctx.beginPath();
+    for (j = 0; j < ocean.length; j++) {
+      d = ocean[j];
+      var oz = -d.x * sa + d.z * ca;
+      var ozt = d.y * SIN_T + oz * COS_T;
+      if (ozt < 0.05) continue;
+      var ox = d.x * ca + d.z * sa, oy = d.y * COS_T - oz * SIN_T;
+      sx = CX + ox * R; sy = CY - oy * R;
+      ctx.moveTo(sx + 0.6, sy); ctx.arc(sx, sy, 0.6, 0, TAU);
+    }
+    ctx.fill();
+
+    /* land dots, bucketed by brightness so we only change fillStyle a few times */
+    var BK = 8, xs = LX, ys = LY, al = LA;
+    for (j = 0; j < land.length; j++) {
+      d = land[j];
+      var z1 = -d.x * sa + d.z * ca;
+      var zt = d.y * SIN_T + z1 * COS_T;
+      if (zt < 0.04) { al[j] = -1; continue; }
+      var x1 = d.x * ca + d.z * sa, yt = d.y * COS_T - z1 * SIN_T;
+      xs[j] = CX + x1 * R; ys[j] = CY - yt * R;
+      al[j] = d.b * (0.3 + 0.7 * Math.pow(zt, 0.7)) * (0.82 + 0.18 * Math.sin(time * 1.8 + d.ph));
+    }
+    for (var bk = 0; bk < BK; bk++) {
+      var lo = bk / BK, hi = (bk + 1) / BK, f = (bk + 0.5) / BK;
+      ctx.fillStyle = 'rgba(' + Math.round(70 + 120 * f) + ',' + Math.round(150 + 90 * f) + ',' +
+                      Math.round(250 - 5 * f) + ',' + (0.25 + 0.75 * f).toFixed(2) + ')';
+      ctx.beginPath();
+      for (j = 0; j < land.length; j++) {
+        if (al[j] < lo || al[j] >= hi) continue;
+        var rad = land[j].s * (0.8 + 0.3 * al[j]);
+        ctx.moveTo(xs[j] + rad, ys[j]); ctx.arc(xs[j], ys[j], rad, 0, TAU);
+      }
+      ctx.fill();
+    }
+    /* city glow */
+    ctx.globalCompositeOperation = 'lighter';
+    for (j = 0; j < land.length; j++) {
+      if (!land[j].city || al[j] < 0.4) continue;
+      ctx.globalAlpha = Math.min(0.85, al[j]);
+      ctx.drawImage(glow, xs[j] - 6, ys[j] - 6, 12, 12);
+    }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+
+    /* inner atmosphere (fresnel) */
+    var fr = ctx.createRadialGradient(CX, CY, R * 0.6, CX, CY, R);
+    fr.addColorStop(0, 'rgba(56,189,248,0)');
+    fr.addColorStop(0.75, 'rgba(56,189,248,0.10)');
+    fr.addColorStop(1, 'rgba(56,189,248,0.55)');
+    ctx.fillStyle = fr; ctx.beginPath(); ctx.arc(CX, CY, R, 0, TAU); ctx.fill();
+
+    /* glassy highlight */
+    var hl = ctx.createRadialGradient(CX - R * 0.4, CY - R * 0.45, 0, CX - R * 0.4, CY - R * 0.45, R * 0.75);
+    hl.addColorStop(0, 'rgba(255,255,255,0.10)'); hl.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = hl; ctx.beginPath(); ctx.arc(CX, CY, R, 0, TAU); ctx.fill();
+
+    /* rim light */
+    var rim = ctx.createLinearGradient(CX - R, CY - R, CX + R, CY + R);
+    rim.addColorStop(0, 'rgba(240,253,255,1)'); rim.addColorStop(0.5, 'rgba(56,189,248,0.95)'); rim.addColorStop(1, 'rgba(37,99,235,0.85)');
+    ctx.strokeStyle = 'rgba(56,189,248,0.16)'; ctx.lineWidth = 8;
+    ctx.beginPath(); ctx.arc(CX, CY, R + 1, 0, TAU); ctx.stroke();
+    ctx.strokeStyle = rim; ctx.lineWidth = 1.7;
+    ctx.beginPath(); ctx.arc(CX, CY, R, 0, TAU); ctx.stroke();
+  }
+
+  function drawMarkers() {
+    var ca = Math.cos(rot), sa = Math.sin(rot);
+    for (var j = 0; j < MARKERS.length; j++) {
+      var m = MARKERS[j];
+      var z1 = -m.bx * sa + m.bz * ca, x1 = m.bx * ca + m.bz * sa;
+      var yt = m.by * COS_T - z1 * SIN_T, zt = m.by * SIN_T + z1 * COS_T;
+      m.sx = CX + x1 * R; m.sy = CY - yt * R; m.depth = zt;
+      m.hot += (((focus === m.key || hover === m.key) ? 1 : 0) - m.hot) * 0.15;
+      if (zt < 0.05) continue;
+      var vis = Math.min(1, (zt - 0.05) / 0.35);
+      var pulse = (time * 0.7 + j * 0.33) % 1;
+
+      ctx.globalAlpha = vis;
+      var g = ctx.createRadialGradient(m.sx, m.sy, 0, m.sx, m.sy, 16 + 6 * m.hot);
+      g.addColorStop(0, m.color + 'cc'); g.addColorStop(1, m.color + '00');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(m.sx, m.sy, 16 + 6 * m.hot, 0, TAU); ctx.fill();
+
+      ctx.strokeStyle = m.color; ctx.lineWidth = 1.2;
+      ctx.globalAlpha = vis * (1 - pulse) * 0.9;
+      ctx.beginPath(); ctx.arc(m.sx, m.sy, 4 + pulse * (9 + 5 * m.hot), 0, TAU); ctx.stroke();
+
+      ctx.globalAlpha = vis;
+      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(m.sx, m.sy, 2.8 + 1.2 * m.hot, 0, TAU); ctx.fill();
+      ctx.strokeStyle = m.color; ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.arc(m.sx, m.sy, 4.6 + 1.2 * m.hot, 0, TAU); ctx.stroke();
+
+      /* label */
+      ctx.font = '700 ' + (10 + 1.5 * m.hot) + 'px "Segoe UI", Roboto, Arial, sans-serif';
+      var w = ctx.measureText(m.label).width, left = m.sx > CX + R * 0.45;
+      var lx = left ? m.sx - 10 - w : m.sx + 10, ly = m.sy - 9;
+      ctx.globalAlpha = vis * (0.7 + 0.3 * m.hot);
+      ctx.fillStyle = 'rgba(2,10,35,0.7)';
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(lx - 5, ly - 9, w + 10, 16, 8); else ctx.rect(lx - 5, ly - 9, w + 10, 16);
+      ctx.fill();
+      ctx.strokeStyle = m.color; ctx.lineWidth = 0.8; ctx.stroke();
+      ctx.fillStyle = '#fff'; ctx.textBaseline = 'middle'; ctx.fillText(m.label, lx, ly);
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  function frame(now) {
+    if (!running) return;
+    var dt = Math.min(0.05, (now - last) / 1000 || 0.016); last = now; time += dt;
+
+    /* rotation: ease toward the focused marker, otherwise slowly spin */
+    if (focus) {
+      rot += angDiff(rot, -links[focus].lon * Math.PI / 180) * Math.min(1, dt * 4.5);
+    } else if (!hover && !reduceMotion) {
+      rot += dt * 0.26;
+    }
+    var mv = reduceMotion ? 0.12 : 1;
+    for (var j = 0; j < PN; j++) parts[j].a += parts[j].sp * dt * mv;
+    if (!reduceMotion) for (j = 0; j < sparks.length; j++) {
+      var s = sparks[j]; s.t += dt * s.sp; if (s.t >= 1) newSpark(s, 0);
+    }
+
+    ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    ctx.clearRect(0, 0, LOGICAL, LOGICAL);
+
+    /* outer glow */
+    var og = ctx.createRadialGradient(CX, CY, R * 0.95, CX, CY, R * 1.5);
+    og.addColorStop(0, 'rgba(56,189,248,0.42)'); og.addColorStop(0.35, 'rgba(37,99,235,0.16)'); og.addColorStop(1, 'rgba(37,99,235,0)');
+    ctx.fillStyle = og; ctx.beginPath(); ctx.arc(CX, CY, R * 1.5, 0, TAU); ctx.fill();
+
+    /* faint halos */
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(147,197,253,0.16)'; ctx.beginPath(); ctx.arc(CX, CY, R * 1.17, 0, TAU); ctx.stroke();
+    ctx.strokeStyle = 'rgba(147,197,253,0.08)'; ctx.beginPath(); ctx.arc(CX, CY, R * 1.29, 0, TAU); ctx.stroke();
+
+    /* back layer (hidden by the globe), globe, front layer */
+    drawRing(rings[0], false); drawRing(rings[1], false); drawParticles(false);
+    drawGlobe();
+    drawMarkers();
+    drawRing(rings[0], true); drawRing(rings[1], true); drawParticles(true);
+    if (!reduceMotion) drawSparks();
+
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- sizing ---------- */
+  function fit() {
+    var css = canvas.clientWidth || LOGICAL, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var px = Math.round(css * dpr);
+    if (canvas.width !== px) { canvas.width = px; canvas.height = px; }
+    scale = px / LOGICAL;
+  }
+  fit();
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(canvas); else window.addEventListener('resize', fit);
+
+  /* ---------- interaction ---------- */
+  function syncActive() {
+    MARKERS.forEach(function (m) {
+      if (m.el) m.el.classList.toggle('is-active', m.key === focus || m.key === hover);
+    });
+  }
+  function setFocus(key) { focus = key; syncActive(); }
+  function setHover(key) { if (hover !== key) { hover = key; syncActive(); } }
+  MARKERS.forEach(function (m) {
+    if (!m.el) return;
+    m.el.addEventListener('mouseenter', function () { setFocus(m.key); });
+    m.el.addEventListener('focus',      function () { setFocus(m.key); });
+    m.el.addEventListener('mouseleave', function () { setFocus(null); });
+    m.el.addEventListener('blur',       function () { setFocus(null); });
+  });
+
+  function pick(e) {
+    var r = canvas.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width * LOGICAL, y = (e.clientY - r.top) / r.height * LOGICAL;
+    for (var j = 0; j < MARKERS.length; j++) {
+      var m = MARKERS[j];
+      if (m.depth > 0.15 && Math.hypot(x - m.sx, y - m.sy) < 15) return m;
+    }
+    return null;
+  }
+  canvas.addEventListener('pointermove', function (e) {
+    var m = pick(e);
+    canvas.style.cursor = m ? 'pointer' : 'default';
+    if (e.pointerType === 'mouse') setHover(m ? m.key : null);
+  });
+  canvas.addEventListener('pointerleave', function () { setHover(null); canvas.style.cursor = 'default'; });
+  canvas.addEventListener('click', function (e) { var m = pick(e); if (m) window.location.href = m.href; });
+
+  /* ---------- run only while visible ---------- */
+  function start() { if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); } }
+  function stop() { running = false; }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) { en[0].isIntersecting ? start() : stop(); }).observe(canvas);
+  } else { start(); }
+})();
+</script>
+</body>
+</html>
